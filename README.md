@@ -6,7 +6,7 @@ Para poder instalar la aplicación de manera local, se tienen que utilizar los c
 ```CMD
 npm run build
 npm start
-
+```
 
 #Vista del proyecto en github pages
 [Link del proyecto](https://ignacio-ibarra05.github.io/Memodeus-Tarea4/)
