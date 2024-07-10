@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/Memodeus-Tarea4/static/css/main.61c7b8bb.css",
-    "main.js": "/Memodeus-Tarea4/static/js/main.ad6d5b65.js",
-    "static/js/453.64be9eb2.chunk.js": "/Memodeus-Tarea4/static/js/453.64be9eb2.chunk.js",
+    "main.js": "/Memodeus-Tarea4/static/js/main.ec14374c.js",
+    "static/js/453.7c8537e0.chunk.js": "/Memodeus-Tarea4/static/js/453.7c8537e0.chunk.js",
     "static/media/background.jpeg": "/Memodeus-Tarea4/static/media/background.f9653f45ad9575362329.jpeg",
     "index.html": "/Memodeus-Tarea4/index.html",
     "main.61c7b8bb.css.map": "/Memodeus-Tarea4/static/css/main.61c7b8bb.css.map",
-    "main.ad6d5b65.js.map": "/Memodeus-Tarea4/static/js/main.ad6d5b65.js.map",
-    "453.64be9eb2.chunk.js.map": "/Memodeus-Tarea4/static/js/453.64be9eb2.chunk.js.map"
+    "main.ec14374c.js.map": "/Memodeus-Tarea4/static/js/main.ec14374c.js.map",
+    "453.7c8537e0.chunk.js.map": "/Memodeus-Tarea4/static/js/453.7c8537e0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.61c7b8bb.css",
-    "static/js/main.ad6d5b65.js"
+    "static/js/main.ec14374c.js"
   ]
 }
