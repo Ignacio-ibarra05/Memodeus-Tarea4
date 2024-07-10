@@ -13,8 +13,6 @@ Para poder visualizar el proyecto se tiene que ingresar al navegador en [http://
 
 [Link del proyecto](https://ignacio-ibarra05.github.io/Memodeus-Tarea4/)
 
-## Demostraciones:
-![Demostración de funcionamiento del proyecto]()
 
 
 
