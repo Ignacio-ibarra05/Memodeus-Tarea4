@@ -2,11 +2,11 @@
 Tarea 4 clase DeepLearning 2024-01
 
 #Pasos de la instalación
-Para poder instalar la aplicación de manera local, se tienen que utilizar los comandos:
+Para poder instalar la aplicación de manera local, se tiene que utiliza:
 ```CMD
-npm run build
 npm start
 ```
+Para poder visualizar el proyecto se tiene que ingresar al navegador en [http://localhost:3000](http://localhost:3000)
 
 #Vista del proyecto en github pages 
 
