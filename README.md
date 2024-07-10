@@ -10,7 +10,12 @@ Esto nos permite ver la aplicación en modo desarrollo.
 Para poder visualizar el proyecto se tiene que ingresar al navegador en [http://localhost:3000](http://localhost:3000)
 
 ## Vista del proyecto en github pages 
-
+Para poder ver la demostración del proyecto se puede entrar en el siguiente link utilizando el apartado de github pages.
+Navegadores compatibles:
+- Google Chrome
+- Opera GX
+- Brave
+  
 [Link del proyecto](https://ignacio-ibarra05.github.io/Memodeus-Tarea4/)
 
 
