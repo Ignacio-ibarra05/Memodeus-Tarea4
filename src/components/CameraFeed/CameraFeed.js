@@ -1,5 +1,3 @@
-// src/components/CameraFeed.js
-
 import React, { useEffect, useState, useRef } from 'react';
 
 const CameraFeed = ({ onStreamReady }) => {
