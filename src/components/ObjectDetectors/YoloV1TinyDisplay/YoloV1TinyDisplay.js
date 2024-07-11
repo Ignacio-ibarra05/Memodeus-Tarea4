@@ -1,11 +1,10 @@
-// YoloV1TinyDisplay.js
 import React, { useEffect, useState } from 'react';
 import yolo from 'tfjs-yolo';
 import * as tf from '@tensorflow/tfjs-core';
 import '@tensorflow/tfjs';
 import '@tensorflow/tfjs-backend-webgl';
 
-const YoloV1TinyDisplay = ({ stream, canvasRef, isLoading, setIsLoading, modelContent, setmodelContent }) => { // Agregar isLoading y setIsLoading como props
+const YoloV1TinyDisplay = ({ stream, canvasRef, isLoading, setIsLoading, modelContent, setmodelContent }) => {
   const [model, setModel] = useState(null);
   const [predictions, setPredictions] = useState([]);
   const [colorMap, setColorMap] = useState({});
@@ -56,7 +55,7 @@ const YoloV1TinyDisplay = ({ stream, canvasRef, isLoading, setIsLoading, modelCo
 
   const detectFrame = (canvas, model) => {
     model.predict(canvas).then(predictions => {
-      if (!isLoading) { // Solo llama a renderPredictions si isLoading es false
+      if (!isLoading) { 
         renderPredictions(predictions, canvas);
         setPredictions(predictions);
       }
@@ -75,7 +74,6 @@ const YoloV1TinyDisplay = ({ stream, canvasRef, isLoading, setIsLoading, modelCo
           newColorMap[prediction.class] = color;
         }
         ctx.beginPath();
-        // Use prediction's top, left, width, and height to draw the bounding box
         ctx.rect(prediction.left, prediction.top, prediction.width, prediction.height);
         ctx.lineWidth = 2;
         ctx.strokeStyle = color;
