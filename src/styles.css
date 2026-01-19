@@ -1,0 +1,588 @@
+/* =====================
+TIPOGRAFÍA
+===================== */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: normal;
+}
+
+/* =====================
+   BASE
+===================== */
+.container {
+    max-width: 1280px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.slider-wrapper {
+    background: #F8FAFC;
+    padding: 60px 0;
+    overflow: hidden;
+}
+
+/* =====================
+   SLIDER CONTAINER
+===================== */
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Altura fija solicitada */
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+/* El track debe ser flexible y sus hijos deben basarse en su ancho total */
+.slider-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    height: 100%; /* Ocupa los 500px del padre */
+}
+
+/* Cada slide debe ocupar exactamente el 100% del track */
+.slider-item {
+    min-width: 100%;
+    flex: 0 0 100%; /* Evita que los slides se encojan o crezcan */
+    box-sizing: border-box;
+}
+
+.slider-card {
+    position: relative;
+    height: 500px; /* Altura fija para la tarjeta */
+    width: 100%;
+    border-radius: 0;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 22px 45px rgba(0,0,0,0.35);
+    transition: transform 0.3s ease;
+    background: #1E293B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 28px 55px rgba(0,0,0,0.45);
+}
+
+/* Aseguramos que la imagen cubra el área sin deformarse */
+.slider-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cambiado de 'contain' a 'cover' para llenar los 500px mejor */
+    object-position: center;
+}
+
+/* =====================
+   OVERLAY TEXTO
+===================== */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(2,6,23,0.95),
+        rgba(2,6,23,0.7) 60%,
+        rgba(2,6,23,0.35)
+    );
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px;
+    color: #fff;
+    pointer-events: none;
+}
+
+.overlay h3 {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.overlay p {
+    font-size: clamp(0.85rem, 1.8vw, 1rem);
+    opacity: 0.95;
+    margin: 0;
+    line-height: 1.5;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* =====================
+   FLECHAS DE NAVEGACIÓN
+===================== */
+
+/* Flechas: Posicionamiento absoluto para que no "empujen" a los slides */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 50px;
+    height: 500px; /* Para que cubra el alto del card */
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.slider-arrow:hover {
+    background: rgba(59, 130, 246, 0.8); /* Azul al pasar el mouse */
+}
+/* Ubicación exacta */
+.slider-arrow.prev {
+    left: 0;
+}
+
+.slider-arrow.next {
+    right: 0;
+}
+/* =====================
+   INDICADORES
+===================== */
+.slider-indicators {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #CBD5E1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.slider-dot:hover {
+    background: #94A3B8;
+    transform: scale(1.2);
+}
+
+.slider-dot.active {
+    background: #3B82F6;
+    width: 40px;
+    border-radius: 6px;
+    border-color: #3B82F6;
+}
+
+.slide-counter {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #475569;
+    font-family: 'Raleway', sans-serif;
+}
+
+/* =====================
+   MODAL
+===================== */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(2,6,23,0.15);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    z-index: 9999;
+}
+
+.modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-box {
+    background: #1E3A5F;
+    width: 80vw;
+    /* Cambios aquí: */
+    height: auto;           /* Permite que se adapte al contenido */
+    max-height: 750px;      /* Límite máximo solicitado */
+    padding: 40px 60px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;       /* Mantiene los bordes redondeados limpios */
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+}
+
+/* =====================
+   MODAL CONTENIDO
+===================== */
+.modal-header h2 {
+    font-size: 1.9rem;
+    margin-bottom: 8px;
+}
+
+.modal-header p {
+    color: #94A3B8;
+    margin-bottom: 15px;
+}
+
+.modal-main-image {
+    height: 450px;      /* Reservamos un espacio fijo para la zona de imagen */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.2);
+    border-radius: 12px;
+}
+
+.modal-main-image img {
+    max-height: 100%;   /* No puede ser más alta que los 450px */
+    width: auto;        /* Ancho proporcional */
+    max-width: 100%;    /* Evita desborde horizontal */
+    object-fit: contain;
+    display: block;
+}
+/* =====================
+   GALERÍA
+===================== */
+/* Galería: se encargará de absorber el scroll si hay muchas fotos */
+.modal-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 14px;
+    flex: 0 1 200px; /* Altura sugerida para la galería antes de hacer scroll */
+    overflow-y: auto;
+    padding: 10px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 12px;
+}
+.modal-gallery::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-gallery::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.2);
+    border-radius: 4px;
+}
+
+.modal-gallery::-webkit-scrollbar-thumb {
+    background: #3B82F6;
+    border-radius: 4px;
+}
+
+.modal-gallery::-webkit-scrollbar-thumb:hover {
+    background: #2563EB;
+}
+
+.modal-gallery-item {
+    position: relative;
+}
+
+.modal-gallery img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    opacity: 0.6;
+}
+
+.image-number {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(0,13,41,0.9);
+    color: #fff;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    border: 2px solid #ffffff;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.modal-gallery img.active {
+    opacity: 1;
+    border-color: #3B82F6;
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+}
+
+.modal-gallery-item.active .image-number {
+    background: #3B82F6;
+    border-color: #3B82F6;
+}
+
+.modal-gallery img:hover {
+    transform: scale(1.05);
+}
+
+.current-image-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,13,41,0.9);
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+    border: 2px solid #ffffff;
+    pointer-events: none;
+    z-index: 11;
+}
+
+/* =====================
+   BOTÓN CERRAR
+===================== */
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #000d29;
+    border: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 26px;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: #3B82F6;
+    transform: scale(1.1);
+}
+
+/* =====================
+   FLECHAS NAVEGACIÓN MODAL
+===================== */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,13,41,0.8);
+    border: 2px solid #ffffff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-arrow:hover {
+    background: #3B82F6;
+    border-color: #3B82F6;
+    transform: translateY(-50%) scale(1.15);
+}
+
+.nav-arrow.prev {
+    left: 20px;
+}
+
+.nav-arrow.next {
+    right: 20px;
+}
+
+/* =====================
+   LISTA DE PROYECTOS
+===================== */
+.projects-section {
+    background: #ffffff;
+    padding: 60px 0;
+}
+
+.projects-section h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #1E293B;
+    margin-bottom: 40px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.project-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 1px solid #E2E8F0;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    border-color: #3B82F6;
+}
+
+.project-card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.project-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-card-image img {
+    transform: scale(1.05);
+}
+
+.project-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #3B82F6;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.project-card-content {
+    padding: 20px;
+}
+
+.project-card-content h3 {
+    font-size: 1.1rem;
+    color: #1E293B;
+    margin: 0 0 10px 0;
+    line-height: 1.4;
+}
+
+.project-card-content p {
+    font-size: 0.9rem;
+    color: #64748B;
+    margin: 0;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.project-card-footer {
+    padding: 0 20px 20px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #94A3B8;
+}
+
+.project-images-count {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.project-images-count::before {
+    content: "📷";
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 768px) {
+    .slider-track {
+        flex: 0 0 80%;
+        width: 80%;
+    }
+    
+    .slider-arrow {
+        flex: 0 0 10%;
+        width: 10%;
+        height: 50vh;
+        font-size: 2rem;
+    }
+    
+    .slider-card {
+        height: 50vh;
+    }
+    
+    .overlay {
+        padding: 20px;
+    }
+    
+    .overlay h3 {
+        font-size: 1rem;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+    }
+    
+    .overlay p {
+        font-size: 0.85rem;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .projects-section h2 {
+        font-size: 1.8rem;
+    }
+}
